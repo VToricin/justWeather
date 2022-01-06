@@ -1,0 +1,27 @@
+#mainDiv{
+    width: 1024px; 
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+}
+body{
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px 0px;
+}
+
+
+@media (max-width: 770px) {
+    #mainDiv{
+        max-width: 90%; 
+
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    
+    }
+  }
