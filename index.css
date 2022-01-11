@@ -1,7 +1,7 @@
 #mainDiv{
     width: 1024px; 
     display: flex;
-    align-items: center;
+    
     justify-content: space-around;
 
 }
@@ -11,7 +11,21 @@ body{
     align-items: center;
     justify-content: center;
     margin: 0px 0px;
+    flex-wrap: wrap;
 }
+header{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.headerDiv{
+    border-bottom: 4px dotted rgb(240, 240, 240);
+    height: 50px;
+    width: 1024px;
+}
+    
 
 
 @media (max-width: 770px) {
@@ -19,9 +33,13 @@ body{
         max-width: 90%; 
 
         display: flex;
-        align-items: center;
+        
         justify-content: space-around;
         flex-wrap: wrap;
     
     }
+    .headerDiv{
+        max-width: 90%;
+    }
+        
   }

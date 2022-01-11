@@ -35,7 +35,7 @@ let dataCons =()=>{
      mainDiv.appendChild(cardPlus5data.returnMethod()); 
 
 
-     let forward10HInformation = new dataGetter(data.hourly[24]);
+     let forward10HInformation = new dataGetter(data.hourly[9]);
      plus10data = forward10HInformation.returnActualData();
      let cardPlus10data = new Card(plus10data, 'Через 10 часов');
      mainDiv.appendChild(cardPlus10data.returnMethod());

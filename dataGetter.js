@@ -3,6 +3,9 @@ class dataGetter {
      this.temp = Math.round(props.temp-273);
      this.cloudURL = props.weather[0].icon;
      this.feels_like = Math.round(props.feels_like-273);
+     this.humidity = props.humidity;
+     this.wind_speed = props.wind_speed;
+     this.feels_like = props.feels_like;
      
      
      }
@@ -62,8 +65,11 @@ class dataGetter {
       cloudsURL : cloudsData,
       cloudsDescription: cloudsDescription,
       howToWear: './imgs/sunny.png',
-      additional : 2,
-      mainPictureURL: mainPictureURL
+      additional : 'дополнительно',
+      mainPictureURL: mainPictureURL,
+      humidity: this.humidity,
+      feels_like: this.feels_like,
+      wind_speed: this.wind_speed
      }
     return actualData;
   }    

@@ -7,6 +7,9 @@ class Card  {
     this.additional = prop.additional;
     this.mainPictureURL = prop.mainPictureURL;
     this.cardName = name;
+    this.humidity = prop.humidity;
+    this.wind_speed = prop.wind_speed;
+    this.feels_like = prop.feels_like;
     
   }
   
@@ -50,9 +53,39 @@ class Card  {
     pTempDiv.innerHTML = `${this.temp}`;
     
     //создание дивки для доп информации. 
+
+
     let additionalInfDiv = document.createElement('div');
     additionalInfDiv.classList.add('inCardDiv');
     additionalInfDiv.innerHTML = `${this.additional}`;
+
+    let additionalInfData = [['влажность',`${this.humidity}&#37;`],['скорость ветра',`${this.wind_speed}м/с`],['ощущается как', `${Math.round(this.feels_like-273)}&#176; `]];
+    let hiddenDiv = document.createElement('div');
+    hiddenDiv.classList.add('hiddenDiv');
+    additionalInfDiv.appendChild(hiddenDiv);
+
+     for(let n=0;n<additionalInfData.length;n++){
+       let newField = document.createElement('div');
+       newField.classList.add('newField');
+        let newFieldName = document.createElement('span');
+        newFieldName.id = 'newFieldName';
+        newFieldName.classList.add('newFieldSpan');
+        newFieldName.innerHTML = `${additionalInfData[n][0]}`;
+        let newFieldValue = document.createElement('span');
+        newFieldValue.id = 'newFieldValue';
+        newFieldValue.classList.add('newFieldSpan');
+        newFieldValue.innerHTML = `${additionalInfData[n][1]}`;
+        hiddenDiv.appendChild(newField);
+        newField.appendChild(newFieldName);
+        newField.appendChild(newFieldValue);
+
+     }
+     additionalInfDiv.addEventListener('click',function(){
+        hiddenDiv.classList.toggle('visible');
+     })  
+
+
+    
 
     
 
@@ -62,6 +95,7 @@ class Card  {
     cardDiv.appendChild(funnyPictureDiv);
     cardDiv.appendChild(tempDiv);
     cardDiv.appendChild(additionalInfDiv);
+
     
 
     
@@ -71,3 +105,5 @@ class Card  {
     return cardDiv;
   }
 }
+
+
