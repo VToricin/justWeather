@@ -1,0 +1,70 @@
+.headerDiv{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    background-color: white;
+    z-index: 50;
+}
+#cityValue{
+    font-family: 'Comfortaa', cursive;
+    font-weight: 700;
+    font-size: 20px;
+    
+}
+/* карточка с городами */ 
+.cityListDiv{
+    width: 30%;
+    padding: 0px 5px;
+    display: flex;
+    flex-direction: column;
+    height: 0px;
+    
+    opacity: 0;
+    position:absolute;
+    top: -150px;
+    transition: 300ms ease;
+    background-color: white;
+    right:0px
+
+
+}
+
+.activated{
+    height: auto;
+    opacity: 1;
+    background-color: rgb(255, 255, 255);
+    top: 60px;
+    transition: 300ms ease;
+    
+
+}
+
+.cityP{
+    height: 40px;
+    margin: 0px;
+    transition: 300ms ease;
+    opacity: 1;
+    font-family: 'Comfortaa', cursive;
+    font-weight: 700;
+    font-size: 20px;
+    
+}
+
+.cityP:hover{
+    background-color: tomato;
+    transition: 300ms ease;
+}
+@media (max-width: 770px) {
+    
+    .activated{
+        width: 100%;
+        height: auto;
+        opacity: 1;
+        background-color: rgb(255, 255, 255);
+        top: 60px;
+        transition: 300ms ease;
+    
+    }
+
+}

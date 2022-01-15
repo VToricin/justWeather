@@ -59,7 +59,7 @@ class Card  {
     additionalInfDiv.classList.add('inCardDiv');
     additionalInfDiv.innerHTML = `${this.additional}`;
 
-    let additionalInfData = [['влажность',`${this.humidity}&#37;`],['скорость ветра',`${this.wind_speed}м/с`],['ощущается как', `${Math.round(this.feels_like-273)}&#176; `]];
+    let additionalInfData = [['влажность',`${this.humidity}&#37;`],['скорость ветра',`${this.wind_speed}м/с`],['ощущается как', `${this.feels_like}&#176; `]];
     let hiddenDiv = document.createElement('div');
     hiddenDiv.classList.add('hiddenDiv');
     additionalInfDiv.appendChild(hiddenDiv);

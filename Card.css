@@ -36,7 +36,7 @@ img{
     margin: 10px 0px
 }
 #funnyPicture{
-    height: auto;
+    height: 300px;
     object-fit: cover;
 }
 p{
@@ -54,7 +54,9 @@ p{
     flex-direction: column;
     height: 0px;
     opacity: 0;
-    transition: 200ms;
+    transition-property: opacity,height;
+    transition-duration: 300ms, 300ms;
+    transition-delay: 0ms, 200ms;
     
 }
 .newField{
@@ -81,7 +83,9 @@ p{
 .visible{
     height: 70px;
     opacity: 1;
-    transition: 200ms ease-in;
+    transition-property: opacity,height;
+    transition-duration: 300ms, 300ms;
+    transition-delay: 200ms, 0ms;
 }
 
 @media (max-width: 770px) {

@@ -1,41 +1,63 @@
 let mainDiv = document.getElementById('mainDiv');
+let cityValue = document.getElementById('cityValue');
+let city = document.getElementById('city');
+let header = document.getElementById('header');
 
-let curData = {
-  
-};
-let plus5data = {
-  
-};
-let plus10data = {
-  
-};
+let skin = `./imgs/Cutekid`;
+let cordinates = 'lat=57.629871&lon=39.873676';
+
+let cityListAndCords = {
+   'Ярославль':{
+      cord: 'lat=57.629871&lon=39.873676'
+   },
+   'Москва': {
+      cord: 'lat=55.761665&lon=37.606667'
+   },
+   'Маунтин Вью': {
+      cord: 'lat=37.386051&lon=-122.083847'
+   },
+   'Лимасол': {
+      cord: 'lat=34.674999&lon=33.033329'
+   },
+   'Паттайя': {
+      cord: 'lat=12.93333&lon=100.883331'
+   }
+}
+
+let curData = {};
+let plus5data = {};
+let plus10data = {};
 
 
 
-let dataCons =()=>{
 
-   fetch('https://api.openweathermap.org/data/2.5/onecall?lat=57.37&lon=39.51&exclude=minutely,daily&appid=17a2a05179606595e90bf4a02fd2ce0a')
+
+cityValue.addEventListener('click',()=>{
+   let cityListDiv = document.createElement('div');
+   cityListDiv.classList.add('cityListDiv');
+})
+
+
+let dataCons =(cords)=>{
+
+   fetch(`https://api.openweathermap.org/data/2.5/onecall?${cords}&exclude=minutely,daily&appid=17a2a05179606595e90bf4a02fd2ce0a`)
   .then(function(rspns){return rspns.json()})
   .then(function(data){
      console.log(data); 
 
-     // Класс dataGetter излишен, проще тут функцию использовать или запихать в конструктор cardConstructor эту обработку,
-     // ведь тяжело его назвать каким-то объетом
-     // Карточка - это понятный объект, а dataGetter - не очень 
-     let curDataInformation = new dataGetter(data.current);
-     curData = curDataInformation.returnActualData();
-
      
-     let cardCur = new Card (curData, 'Сейчас');
+     let curDataInformation = new dataGetter(data.current,skin);
+     curData = curDataInformation.returnActualData();
+     let cardCur = new Card (curData, 'Сейчас');  
      mainDiv.appendChild(cardCur.returnMethod());
      
-     let forward5HInformation = new dataGetter(data.hourly[4]);
+     let forward5HInformation = new dataGetter(data.hourly[4],skin);
      plus5data = forward5HInformation.returnActualData();
      let cardPlus5data = new Card(plus5data, 'Через 5 часов');
      mainDiv.appendChild(cardPlus5data.returnMethod()); 
 
 
-     let forward10HInformation = new dataGetter(data.hourly[9]);
+     let forward10HInformation = new dataGetter(data.hourly[9],skin);
      plus10data = forward10HInformation.returnActualData();
      let cardPlus10data = new Card(plus10data, 'Через 10 часов');
      mainDiv.appendChild(cardPlus10data.returnMethod());
@@ -45,7 +67,31 @@ let dataCons =()=>{
   )
 
 }
-dataCons();
+// дефолтно загружается страница с координатами Ярославля в качестве агрумента
+dataCons(cordinates);
+
+
+//меню выбора города(координат) 
+let cityListDiv = document.createElement('div');
+cityListDiv.classList.add('cityListDiv');
+for (let ci=0;ci<Object.keys(cityListAndCords).length;ci++){
+   let cityP = document.createElement('p');
+   cityP.innerHTML=`${Object.keys(cityListAndCords)[ci]}`;
+   cityP.classList.add('cityP');
+   cityListDiv.appendChild(cityP);
+   cityP.addEventListener('click',()=>{
+      cityListDiv.classList.remove('activated');
+      city.innerHTML = `${Object.keys(cityListAndCords)[ci]}`;
+      mainDiv.innerHTML = '';
+      cordinates = cityListAndCords[Object.keys(cityListAndCords)[ci]].cord;
+      dataCons(cordinates);
+   })
+}
+header.appendChild(cityListDiv);
+
+cityValue.addEventListener('click',()=>{
+   cityListDiv.classList.toggle('activated');
+})
 
 
 

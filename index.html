@@ -7,17 +7,28 @@
     <title>JustWeatherVanilla</title>
     <link rel="stylesheet" href="./Card.css">
     <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="Header.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <div class="headerDiv"></div>
+    <header id="header">
+        <div class="headerDiv">
+            <div id="logo"><img src="./imgs/hat.png" style="object-fit: contain;" alt=""></div>
+            <div id="cityValue"><p id='city'>Город</p></div>
+        </div>
     </header>
     <div id="mainDiv">
+        <footer>
+            <div id="footerDiv">
+
+
+            </div>
+        </footer>
 
     </div>
+<script src="./Header.js"></script>
 <script src="./dataGetter.js"></script>    
 <script src="./Card.js"></script>    
 <script src="./index.js"></script>
