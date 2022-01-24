@@ -58,25 +58,34 @@ class dataGetter {
           cloudsDescription = 'малооблачно'
          break 
         case '03d':
-          cloudsData = './imgs/sunny.png'
+          cloudsData = './imgs/sunnycloudy.png'
           cloudsDescription = 'переменная облачность'
          break
         
         case '03n':
-          cloudsData = './imgs/sunny.png'
+          cloudsData = './imgs/sunnycloudy.png'
           cloudsDescription = 'переменная облачность'
          break
 
         case '04d':
-          cloudsData = './imgs/sunnycloudy.png'
+          cloudsData = './imgs/cloudy.png'
           cloudsDescription = 'облачно'
          break 
 
         case '04n':
-          cloudsData = './imgs/sunnycloudy.png'
+          cloudsData = './imgs/cloudy.png'
           cloudsDescription = 'облачно'
          break  
         
+         case '10d':
+          cloudsData = './imgs/rainy.png'
+          cloudsDescription = 'дождь'
+         break 
+
+        case '10n':
+          cloudsData = './imgs/rainy.png'
+          cloudsDescription = 'дождь'
+         break   
         case '13d':
           cloudsData = './imgs/litsnow.png'
           cloudsDescription = 'снег'
