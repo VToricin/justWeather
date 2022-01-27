@@ -24,6 +24,7 @@ class Card  {
     pCardName.id = 'pCardClass';
     pCardName.innerHTML = `${this.cardName}`
 
+
     //создание дивки для картинки с осадками
     const cloudsDiv = document.createElement('div');
     cloudsDiv.classList.add('inCardDiv');
@@ -54,7 +55,10 @@ class Card  {
     
     //создание дивки для доп информации. 
 
-
+    let additionalInfSpan = document.createElement('span');
+    additionalInfSpan.classList.add('additionalInfSpan')
+    let additionalContainer = document.createElement('div');
+    additionalContainer.classList.add('additionalContainer') 
     let additionalInfDiv = document.createElement('div');
     additionalInfDiv.classList.add('inCardDiv');
     additionalInfDiv.innerHTML = `${this.additional}`;
@@ -63,6 +67,8 @@ class Card  {
     let hiddenDiv = document.createElement('div');
     hiddenDiv.classList.add('hiddenDiv');
     additionalInfDiv.appendChild(hiddenDiv);
+    additionalContainer.appendChild(additionalInfSpan);
+    additionalContainer.appendChild(additionalInfDiv);
 
      for(let n=0;n<additionalInfData.length;n++){
        let newField = document.createElement('div');
@@ -80,8 +86,10 @@ class Card  {
         newField.appendChild(newFieldValue);
 
      }
-     additionalInfDiv.addEventListener('click',function(){
+     
+     additionalContainer.addEventListener('click',function(){
         hiddenDiv.classList.toggle('visible');
+        additionalInfSpan.classList.toggle('active');
      })  
 
 
@@ -94,7 +102,7 @@ class Card  {
     cardDiv.appendChild(cloudsDiv);
     cardDiv.appendChild(funnyPictureDiv);
     cardDiv.appendChild(tempDiv);
-    cardDiv.appendChild(additionalInfDiv);
+    cardDiv.appendChild(additionalContainer);
 
     
 

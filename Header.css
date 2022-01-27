@@ -10,24 +10,69 @@
     font-family: 'Comfortaa', cursive;
     font-weight: 700;
     font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     
 }
 /* карточка с городами */ 
 .cityListDiv{
     width: 30%;
-    padding: 0px 5px;
+    padding: 5px 5px;
     display: flex;
     flex-direction: column;
     height: 0px;
-    
+    z-index: 5;
     opacity: 0;
     position:absolute;
-    top: -150px;
-    transition: 300ms ease;
+    top: -350px;
+    transition: ease 300ms;
     background-color: white;
-    right:0px
+    right:0px;
+    box-shadow: 0 2px 3px 0 rgb(238, 238, 238);
+    border-radius: 5px; 
+}
 
+.errCity{
+   height: 8px;
+   width: 15px;
+   display: block;
+   position: relative;
+   margin: 0px 5px 0px 0px;
+}
+.errCity:after, .errCity:before{
+   content: '';  
+   height: 2px; 
+   position: absolute;
+   width: 50%;
+   border-color: black;
+   background-color: black;
+   border-radius: 1px;
+}
 
+.errCity:before{
+    transform: rotate(-30deg);
+    left: 5px;
+    top: 3px;
+    transition: 300ms ease;
+}
+
+.errCity:after{
+    transform: rotate(30deg);
+    top: 3px;
+    transition: 300ms ease;
+}
+
+.errCity.active:before{
+    transform: rotate(30deg);
+    left: 5px;
+    top: 3px;
+    transition: 300ms ease;
+}
+.errCity.active:after{
+    transform: rotate(-30deg);
+    top: 3px;
+    transition: 300ms ease;
 }
 
 .activated{
@@ -35,7 +80,10 @@
     opacity: 1;
     background-color: rgb(255, 255, 255);
     top: 60px;
-    transition: 300ms ease;
+    transition-property: opacity, height, top;
+    transition-duration: 300ms, 300ms, 300ms;
+    transition-delay: 0ms, 0ms, 200ms;
+    z-index: 5;
     
 
 }
@@ -48,6 +96,7 @@
     font-family: 'Comfortaa', cursive;
     font-weight: 700;
     font-size: 20px;
+    border-radius: 5px;
     
 }
 
@@ -63,8 +112,14 @@
         opacity: 1;
         background-color: rgb(255, 255, 255);
         top: 60px;
-        transition: 300ms ease;
+        transition-property: opacity, height, top;
+        transition-duration: 300ms, 300ms, 300ms;
+        transition-delay: 0ms, 0ms, 200ms;
+        z-index: 5;
     
     }
-
+    
+    .cityListDiv{
+        width: 100%;
+    }
 }

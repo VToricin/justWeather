@@ -2,9 +2,14 @@ let mainDiv = document.getElementById('mainDiv');
 let cityValue = document.getElementById('cityValue');
 let city = document.getElementById('city');
 let header = document.getElementById('header');
-
+let headerDiv = document.querySelector('.headerDiv');
+let body = document.querySelector('body');
+let ifActivated = false;
 let skin = `./imgs/Cutekid`;
 let cordinates = 'lat=57.629871&lon=39.873676';
+let errCity = document.querySelector('.errCity');
+
+
 
 let cityListAndCords = {
    'Ярославль': {
@@ -75,19 +80,33 @@ for (let ci=0; ci < Object.keys(cityListAndCords).length; ci++) {
    cityP.innerHTML=`${Object.keys(cityListAndCords)[ci]}`;
    cityP.classList.add('cityP');
    cityListDiv.appendChild(cityP);
-   cityP.addEventListener('click', () => {
-      cityListDiv.classList.remove('activated');
-      city.innerHTML = `${Object.keys(cityListAndCords)[ci]}`;
-      mainDiv.innerHTML = '';
-      cordinates = cityListAndCords[Object.keys(cityListAndCords)[ci]].cord;
-      dataCons(cordinates);
+   cityP.addEventListener('click', (e) => {
+      
+           e.stopPropagation();
+           city.innerHTML = `${Object.keys(cityListAndCords)[ci]}`;
+           mainDiv.innerHTML = '';
+           cordinates = cityListAndCords[Object.keys(cityListAndCords)[ci]].cord;
+           cityListDiv.classList.remove('activated');
+           dataCons(cordinates);
+         
+       
    })
 }
-header.appendChild(cityListDiv);
+cityValue.appendChild(cityListDiv);
 
-cityValue.addEventListener('click', () => {
+
+
+
+cityValue.addEventListener('click', function(e){
+   e.stopPropagation();
    cityListDiv.classList.toggle('activated');
-})
+   ifActivated = true;
+   errCity.classList.toggle('active');
+   }
+
+);
+   
+evLisMethod();
 
 
 

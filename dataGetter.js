@@ -36,6 +36,9 @@ class dataGetter {
     } else if(this.feels_like>19&&this.feels_like<30){
         mainPictureURL = `${this.skin}/7.png`
         console.log(this.feels_like)
+    }else if(this.feels_like>29&&this.feels_like<50){
+          mainPictureURL = `${this.skin}/8.png`
+          console.log(this.feels_like)
       } else{mainPictureURL = `${this.skin}/12.png`
       console.log(this.feels_like)}   
 
@@ -102,7 +105,7 @@ class dataGetter {
       cloudsURL : cloudsData,
       cloudsDescription: cloudsDescription,
       howToWear: './imgs/sunny.png',
-      additional : 'дополнительно',
+      additional : 'больше данных  ',
       mainPictureURL: mainPictureURL,
       humidity: this.humidity,
       feels_like: this.feels_like,
