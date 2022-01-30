@@ -1,9 +1,10 @@
-let evLisMethod = ()=> {
-    body.addEventListener('click', function (el){
+let evLisMethod = () => {
+    body.addEventListener('click', function (el) {
       
-        if(!el.target.classList.contains('cityP')&&ifActivated===true){
+        if(!el.target.classList.contains('cityP')&&ifCityListDivActivated===true) {
           cityListDiv.classList.remove('activated');
-          ifActivated = false;
+          ifCityListDivActivated = false;
+          arrCity.classList.toggle('active');
         }
     })
 }

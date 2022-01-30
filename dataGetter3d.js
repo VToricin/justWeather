@@ -1,12 +1,14 @@
-class dataGetter {
+class dataGetter3d {
   constructor(props,skin){
-     this.temp = Math.round(props.temp-273);
+     this.temp_max = Math.round(props.temp.max-273);
+     this.temp_min = Math.round(props.temp.min-273);
      this.cloudURL = props.weather[0].icon;
      this.feels_like = Math.round(props.feels_like-273);
      this.humidity = props.humidity;
      this.wind_speed = props.wind_speed;
      this.wind_deg = props.wind_deg;
      this.pressure = Math.round(props.pressure/1.33322387415);
+
 
      
      this.skin = skin;
@@ -104,7 +106,7 @@ class dataGetter {
  
     }
     let actualData = {
-      temp: `${this.temp}&deg; `,
+      temp: `${this.temp_max}&deg; /${this.temp_min}&deg;`,
       cloudsURL : cloudsData,
       cloudsDescription: cloudsDescription,
       howToWear: './imgs/sunny.png',

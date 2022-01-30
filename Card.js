@@ -9,7 +9,9 @@ class Card  {
     this.cardName = name;
     this.humidity = prop.humidity;
     this.wind_speed = prop.wind_speed;
+    this.wind_deg = prop.wind_deg;
     this.feels_like = prop.feels_like;
+    this.pressure = prop.pressure;
     
   }
   
@@ -30,6 +32,7 @@ class Card  {
     cloudsDiv.classList.add('inCardDiv');
     const clouds = document.createElement('img');
     clouds.src = this.cloudsURL;
+    clouds.style.height = '50px';
     cloudsDiv.appendChild(clouds);
     const cloudsDescription = document.createElement('p');
     cloudsDiv.appendChild(cloudsDescription);
@@ -56,19 +59,25 @@ class Card  {
     //создание дивки для доп информации. 
 
     let additionalInfSpan = document.createElement('span');
-    additionalInfSpan.classList.add('additionalInfSpan')
+    let additionalInfSpanRight = document.createElement('span');
+    additionalInfSpan.classList.add('additionalInfSpan');
+    additionalInfSpanRight.classList.add('additionalInfSpanRight')
     let additionalContainer = document.createElement('div');
-    additionalContainer.classList.add('additionalContainer') 
+    additionalContainer.classList.add('additionalContainer'); 
     let additionalInfDiv = document.createElement('div');
     additionalInfDiv.classList.add('inCardDiv');
     additionalInfDiv.innerHTML = `${this.additional}`;
-
-    let additionalInfData = [['влажность',`${this.humidity}&#37;`],['скорость ветра',`${this.wind_speed}м/с`],['ощущается как', `${this.feels_like}&#176; `]];
+    
+    let windDirectionImg = `<img src='./imgs/arrow.png' style='transform:rotate(${this.wind_deg}deg)'/>`;
+    
+    let additionalInfData = [['скорость ветра', this.wind_speed], ['направление ветра', windDirectionImg], ['влажность', this.humidity],
+    ['ощущается как', this.feels_like], ['давление', this.pressure]];
     let hiddenDiv = document.createElement('div');
     hiddenDiv.classList.add('hiddenDiv');
     additionalInfDiv.appendChild(hiddenDiv);
     additionalContainer.appendChild(additionalInfSpan);
     additionalContainer.appendChild(additionalInfDiv);
+    additionalContainer.appendChild(additionalInfSpanRight);
 
      for(let n=0;n<additionalInfData.length;n++){
        let newField = document.createElement('div');
@@ -80,7 +89,7 @@ class Card  {
         let newFieldValue = document.createElement('span');
         newFieldValue.id = 'newFieldValue';
         newFieldValue.classList.add('newFieldSpan');
-        newFieldValue.innerHTML = `${additionalInfData[n][1]}`;
+        newFieldValue.insertAdjacentHTML('beforeEnd', additionalInfData[n][1]);
         hiddenDiv.appendChild(newField);
         newField.appendChild(newFieldName);
         newField.appendChild(newFieldValue);
@@ -93,9 +102,6 @@ class Card  {
      })  
 
 
-    
-
-    
 
     // добавление всех дивок в основную карточки
     cloudsDiv.appendChild(clouds);
@@ -103,11 +109,6 @@ class Card  {
     cardDiv.appendChild(funnyPictureDiv);
     cardDiv.appendChild(tempDiv);
     cardDiv.appendChild(additionalContainer);
-
-    
-
-    
-    
 
     
     return cardDiv;

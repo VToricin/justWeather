@@ -1,15 +1,17 @@
-let mainDiv = document.getElementById('mainDiv');
-let cityValue = document.getElementById('cityValue');
-let city = document.getElementById('city');
-let header = document.getElementById('header');
-let headerDiv = document.querySelector('.headerDiv');
-let body = document.querySelector('body');
-let ifActivated = false;
+let mainDiv = document.getElementById('mainDiv'); // основная область боди
+let cityValue = document.getElementById('cityValue'); // div-кнопка для выбора города
+let city = document.getElementById('city'); // параграф со значением выбора города 
+let header = document.getElementById('header'); // шапка
+let headerDiv = document.querySelector('.headerDiv'); // основная область шапки
+let body = document.querySelector('body'); 
+let ifCityListDivActivated = false;
 let skin = `./imgs/Cutekid`;
 let cordinates = 'lat=57.629871&lon=39.873676';
-let errCity = document.querySelector('.errCity');
-
-
+let arrCity = document.querySelector('.arrCity');
+let cityListDiv = document.createElement('div');
+let modeDiv = document.getElementById('mode');
+let modeState = true;
+let modeName = document.getElementById('modeName');
 
 let cityListAndCords = {
    'Ярославль': {
@@ -29,86 +31,73 @@ let cityListAndCords = {
    }
 }
 
-let curData = {};
-let plus5data = {};
-let plus10data = {};
+cityListBuilder();
 
 cityValue.addEventListener('click', () => {
-   let cityListDiv = document.createElement('div');
+   
    cityListDiv.classList.add('cityListDiv');
 });
 
-
+// запрос данных на сайт openweather 
 let dataCons = (cords) => {
-
-   fetch(`https://api.openweathermap.org/data/2.5/onecall?${cords}&exclude=minutely,daily&appid=17a2a05179606595e90bf4a02fd2ce0a`)
+   mainDiv.innerHTML = '';
+   fetch(`https://api.openweathermap.org/data/2.5/onecall?${cords}&exclude=minutely&appid=17a2a05179606595e90bf4a02fd2ce0a`)
   .then(function(rspns){return rspns.json()})
-  .then(function(data){
+    .then(function(data){
      console.log(data); 
 
-     
-     let curDataInformation = new dataGetter(data.current, skin);
-     curData = curDataInformation.returnActualData();
-     let cardCur = new Card (curData, 'Сейчас');  
-     mainDiv.appendChild(cardCur.returnMethod());
-     
-     let forward5HInformation = new dataGetter(data.hourly[4], skin);
-     plus5data = forward5HInformation.returnActualData();
-     let cardPlus5data = new Card(plus5data, 'Через 5 часов');
-     mainDiv.appendChild(cardPlus5data.returnMethod()); 
-
-
-     let forward10HInformation = new dataGetter(data.hourly[9], skin);
-     plus10data = forward10HInformation.returnActualData();
-     let cardPlus10data = new Card(plus10data, 'Через 10 часов');
-     mainDiv.appendChild(cardPlus10data.returnMethod());
-         
-    
-  }
-  )
-
+     let dataToBuildOnPage10h = [[data.current, 'Сайчас'], [data.hourly[4], 'Через 5 часов'], [data.hourly[9], 'Через 10 часов']];
+     let dataToBuildOnPage3d = [[data.daily[0], 'Сегодня'],[data.daily[1], 'Завтра'],[data.daily[2], 'Послезавтра']];
+      
+     if(modeState === true) {
+        for (let i=0; i<dataToBuildOnPage10h.length; i++) {
+           let dataInformation = new dataGetter(dataToBuildOnPage10h[i][0], skin);
+           let dataToBuild = dataInformation.returnActualData();
+           let cardToBuild = new Card (dataToBuild, dataToBuildOnPage10h[i][1]);  
+           mainDiv.appendChild(cardToBuild.returnMethod());
+        }
+     } else {
+        for (let i=0; i<dataToBuildOnPage3d.length; i++) {
+         let dataInformation = new dataGetter3d(dataToBuildOnPage3d[i][0], skin);
+         let dataToBuild = dataInformation.returnActualData();
+         let cardToBuild = new Card (dataToBuild, dataToBuildOnPage3d[i][1]);  
+         mainDiv.appendChild(cardToBuild.returnMethod());
+      }
+     }
+    })
+  
 }
 // дефолтно загружается страница с координатами Ярославля в качестве агрумента
 dataCons(cordinates);
 
 
-//меню выбора города(координат) 
-let cityListDiv = document.createElement('div');
-cityListDiv.classList.add('cityListDiv');
-for (let ci=0; ci < Object.keys(cityListAndCords).length; ci++) {
-   let cityP = document.createElement('p');
-   cityP.innerHTML=`${Object.keys(cityListAndCords)[ci]}`;
-   cityP.classList.add('cityP');
-   cityListDiv.appendChild(cityP);
-   cityP.addEventListener('click', (e) => {
-      
-           e.stopPropagation();
-           city.innerHTML = `${Object.keys(cityListAndCords)[ci]}`;
-           mainDiv.innerHTML = '';
-           cordinates = cityListAndCords[Object.keys(cityListAndCords)[ci]].cord;
-           cityListDiv.classList.remove('activated');
-           dataCons(cordinates);
-         
-       
-   })
-}
-cityValue.appendChild(cityListDiv);
-
-
-
-
+//функция открытия списка выбора города в шапке
 cityValue.addEventListener('click', function(e){
    e.stopPropagation();
    cityListDiv.classList.toggle('activated');
-   ifActivated = true;
-   errCity.classList.toggle('active');
+   if(!ifCityListDivActivated){
+   ifCityListDivActivated = true;
+   }
+   arrCity.classList.toggle('active');
    }
 
 );
-   
+
+// функция для закрытия окна с выбором городов при клике на любом пустом месте
 evLisMethod();
 
-
+modeDiv.addEventListener('click', function(){
+   if (modeState === true) { 
+   modeState = false;
+   modeName.innerHTML = '3 д.';
+   dataCons(cordinates);
+   } else {
+      modeState = true;
+      modeName.innerHTML = '10 ч.';
+      dataCons(cordinates);
+   }
+   
+})
 
 
 

@@ -1,4 +1,4 @@
-.headerDiv{
+.headerDiv {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -6,7 +6,23 @@
     background-color: white;
     z-index: 50;
 }
-#cityValue{
+
+/* Активные элементы внтури шапки */
+#activeElements {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Comfortaa', cursive;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+#mode {
+   padding: 0px 10px;
+   margin: 0px 8px 0px 0px;
+}
+
+#cityValue {
     font-family: 'Comfortaa', cursive;
     font-weight: 700;
     font-size: 20px;
@@ -14,9 +30,10 @@
     align-items: center;
     justify-content: center;
     
+    
 }
 /* карточка с городами */ 
-.cityListDiv{
+.cityListDiv {
     width: 30%;
     padding: 5px 5px;
     display: flex;
@@ -33,14 +50,14 @@
     border-radius: 5px; 
 }
 
-.errCity{
+.arrCity {
    height: 8px;
    width: 15px;
    display: block;
    position: relative;
    margin: 0px 5px 0px 0px;
 }
-.errCity:after, .errCity:before{
+.arrCity:after, .arrCity:before {
    content: '';  
    height: 2px; 
    position: absolute;
@@ -50,32 +67,32 @@
    border-radius: 1px;
 }
 
-.errCity:before{
+.arrCity:before {
     transform: rotate(-30deg);
-    left: 5px;
+    left: 4px;
     top: 3px;
     transition: 300ms ease;
 }
 
-.errCity:after{
+.arrCity:after {
     transform: rotate(30deg);
     top: 3px;
     transition: 300ms ease;
 }
 
-.errCity.active:before{
+.arrCity.active:before {
     transform: rotate(30deg);
-    left: 5px;
+    left: 4px;
     top: 3px;
     transition: 300ms ease;
 }
-.errCity.active:after{
+.arrCity.active:after {
     transform: rotate(-30deg);
     top: 3px;
     transition: 300ms ease;
 }
 
-.activated{
+.activated {
     height: auto;
     opacity: 1;
     background-color: rgb(255, 255, 255);
@@ -88,7 +105,7 @@
 
 }
 
-.cityP{
+.cityP {
     height: 40px;
     margin: 0px;
     transition: 300ms ease;
@@ -100,13 +117,13 @@
     
 }
 
-.cityP:hover{
+.cityP:hover {
     background-color: tomato;
     transition: 300ms ease;
 }
 @media (max-width: 770px) {
     
-    .activated{
+    .activated {
         width: 100%;
         height: auto;
         opacity: 1;
@@ -119,7 +136,7 @@
     
     }
     
-    .cityListDiv{
+    .cityListDiv {
         width: 100%;
     }
 }

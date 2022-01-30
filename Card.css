@@ -1,5 +1,5 @@
  /* DIV внутри которой строится каждая карточка */ 
-.cardDiv{
+.cardDiv {
     width: 300px ;
     display: flex;
     flex-direction: column;
@@ -8,7 +8,7 @@
 }
 
 /* общий класс для флекс элементов в каждой карточке */
-.inCardDiv{
+.inCardDiv {
     width: 100%;
     display: flex;
     align-items: center;
@@ -21,13 +21,13 @@
     
 }
 
-img{
+img {
     object-fit: contain;
-    height: 50px;
+    
 }
 
 /* надписи крупным шрифтом внутри карточки */
-.descriptionClass{
+.descriptionClass {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -38,12 +38,12 @@ img{
 }
 
 /* название карточки */
-#pCardName{
+#pCardName {
     margin: 10px 0px
 }
 
 /* дивка для картинки */
-#funnyPicture{
+#funnyPicture {
     height: 300px;
     object-fit: cover;
 }
@@ -57,7 +57,7 @@ p{
 }
 
 /* дополнительная информация в скрытой дивке */
-.hiddenDiv{
+.hiddenDiv {
     width:100%;
     display: flex;
     align-items: center;
@@ -72,14 +72,14 @@ p{
 }
 
 /* контейнер-кнопка для стрелочки и дивки с доп. информацией */ 
-.additionalContainer{
+.additionalContainer {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 /* спан из которого сделана стрелочка */
-.additionalInfSpan{
+.additionalInfSpan,.additionalInfSpanRight {
    height: 8px;
    width: 15px;
    display: block;
@@ -87,7 +87,7 @@ p{
  }
 
 
-.additionalInfSpan:after,.additionalInfSpan:before{
+.additionalInfSpan:after,.additionalInfSpan:before {
     content:'';   
     height: 2px;
     width: 50%;
@@ -96,54 +96,55 @@ p{
     border-radius: 1px;
 }
 
-.additionalInfSpan:after{
+.additionalInfSpan:after {
     transform: rotate(30deg);
     transition: 300ms ease;
     
 }
 
-.additionalInfSpan:before{
+.additionalInfSpan:before {
     transform: rotate(-30deg);
     left: 5px;
     transition: 300ms ease;
 }
 
-.additionalInfSpan.active:after{
+.additionalInfSpan.active:after {
     transform: rotate(-30deg);
     transition: 300ms ease;
 }
 
-.additionalInfSpan.active:before{
+.additionalInfSpan.active:before {
     transform: rotate(30deg);
     left: 5px;
     transition: 300ms ease;
 }
 
-.newField{
+.newField {
     width:100%;
     display: flex;
     justify-content: center;
     font-family: 'Comfortaa', cursive;
     font-weight: 700;
     margin-top: 7px;
+    font-size: 14px;
 }
 
-.newFieldSpan{
+.newFieldSpan {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-#newFieldName{
-    width: 60%;
+#newFieldName {
+    width: 58%;
 }
 
-#newFieldValue{
-    width: 30%;
+#newFieldValue {
+    width: 35%;
 }
 
-.visible{
-    height: 70px;
+.visible {
+    height: 130px;
     opacity: 1;
     transition-property: opacity,height;
     transition-duration: 300ms, 300ms;

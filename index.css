@@ -1,12 +1,12 @@
 
 /* Основная ДИВка для карточек */
-#mainDiv{
+#mainDiv {
     width: 1024px; 
     display: flex;
     justify-content: space-between;
 }
 
-body{
+body {
     width:100%;
     display: flex;
     align-items: center;
@@ -14,8 +14,8 @@ body{
     margin: 0px 0px;
     flex-wrap: wrap;
 }
-
-header{
+/* шапка */
+header {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -23,26 +23,25 @@ header{
 
 }
 /* Дивка для шапки */ 
-.headerDiv{
+.headerDiv {
     border-bottom: 4px dotted rgb(240, 240, 240);
     height: 50px;
     width: 1024px;
 }
 
 
-
     
 
 
 @media (max-width: 770px) {
-    #mainDiv{
+    #mainDiv {
         max-width: 90%; 
         display: flex;
         justify-content: space-around;
         flex-wrap: wrap;
     
     }
-    .headerDiv{
+    .headerDiv {
         max-width: 90%;
     }
         
