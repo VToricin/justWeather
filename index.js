@@ -12,6 +12,8 @@ let cityListDiv = document.createElement('div');
 let modeDiv = document.getElementById('mode');
 let modeState = true;
 let modeName = document.getElementById('modeName');
+let loadedData = {};
+
 
 let cityListAndCords = {
    'Ярославль': {
@@ -38,13 +40,17 @@ cityValue.addEventListener('click', () => {
    cityListDiv.classList.add('cityListDiv');
 });
 
-// запрос данных на сайт openweather 
+// запрос данных на сайт openweather.org 
 let dataCons = (cords) => {
    mainDiv.innerHTML = '';
+   
+   if (!Object.keys(loadedData).includes(cords)) {
+   console.log('true');   
    fetch(`https://api.openweathermap.org/data/2.5/onecall?${cords}&exclude=minutely&appid=17a2a05179606595e90bf4a02fd2ce0a`)
   .then(function(rspns){return rspns.json()})
     .then(function(data){
      console.log(data); 
+     loadedData.cordinates = data;
 
      let dataToBuildOnPage10h = [[data.current, 'Сайчас'], [data.hourly[4], 'Через 5 часов'], [data.hourly[9], 'Через 10 часов']];
      let dataToBuildOnPage3d = [[data.daily[0], 'Сегодня'],[data.daily[1], 'Завтра'],[data.daily[2], 'Послезавтра']];
@@ -64,8 +70,32 @@ let dataCons = (cords) => {
          mainDiv.appendChild(cardToBuild.returnMethod());
       }
      }
+
+
     })
-  
+   }else{
+      console.log('false');
+      let data = loadedData.cords;
+      
+     let dataToBuildOnPage10h = [[data.current, 'Сайчас'], [data.hourly[4], 'Через 5 часов'], [data.hourly[9], 'Через 10 часов']];
+     let dataToBuildOnPage3d = [[data.daily[0], 'Сегодня'],[data.daily[1], 'Завтра'],[data.daily[2], 'Послезавтра']];
+      
+     if(modeState === true) {
+        for (let i=0; i<dataToBuildOnPage10h.length; i++) {
+           let dataInformation = new dataGetter(dataToBuildOnPage10h[i][0], skin);
+           let dataToBuild = dataInformation.returnActualData();
+           let cardToBuild = new Card (dataToBuild, dataToBuildOnPage10h[i][1]);  
+           mainDiv.appendChild(cardToBuild.returnMethod());
+        }
+     } else {
+        for (let i=0; i<dataToBuildOnPage3d.length; i++) {
+         let dataInformation = new dataGetter3d(dataToBuildOnPage3d[i][0], skin);
+         let dataToBuild = dataInformation.returnActualData();
+         let cardToBuild = new Card (dataToBuild, dataToBuildOnPage3d[i][1]);  
+         mainDiv.appendChild(cardToBuild.returnMethod());
+      }
+     }
+   }
 }
 // дефолтно загружается страница с координатами Ярославля в качестве агрумента
 dataCons(cordinates);

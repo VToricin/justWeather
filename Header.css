@@ -120,7 +120,12 @@
 .cityP:hover {
     background-color: tomato;
     transition: 300ms ease;
+
 }
+
+
+
+
 @media (max-width: 770px) {
     
     .activated {

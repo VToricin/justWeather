@@ -3,13 +3,14 @@ class dataGetter3d {
      this.temp_max = Math.round(props.temp.max-273);
      this.temp_min = Math.round(props.temp.min-273);
      this.cloudURL = props.weather[0].icon;
-     this.feels_like = Math.round(props.feels_like-273);
+     
      this.humidity = props.humidity;
      this.wind_speed = props.wind_speed;
      this.wind_deg = props.wind_deg;
      this.pressure = Math.round(props.pressure/1.33322387415);
-
-
+     this.feels_like_day = Math.round(props.feels_like.day-273);
+     this.feels_like_night = Math.round(props.feels_like.night-273);
+     this.feels_like = (this.feels_like_day + this.feels_like_night)/2;
      
      this.skin = skin;
      
@@ -113,7 +114,7 @@ class dataGetter3d {
       additional : 'больше данных  ',
       mainPictureURL: mainPictureURL,
       humidity: `${this.humidity}&#37;`,
-      feels_like: `${this.feels_like}&#176; `,
+      feels_like: `${this.feels_like_day}&#176; д. / ${this.feels_like_night}&#176; н.`,
       pressure: `${this.pressure}мм. р/с`,
       wind_speed: `${this.wind_speed}м/с`,
       wind_deg: this.wind_deg
