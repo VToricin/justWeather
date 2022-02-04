@@ -83,6 +83,11 @@ class dataGetter {
           cloudsDescription = 'облачно'
          break  
         
+        case '50d':
+          cloudsData = './imgs/cloudy.png'
+          cloudsDescription = 'облачно'
+         break
+        
          case '10d':
           cloudsData = './imgs/rainy.png'
           cloudsDescription = 'дождь'
